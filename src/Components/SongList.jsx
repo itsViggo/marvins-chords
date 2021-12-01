@@ -8,7 +8,8 @@ import { IconButton } from '@mui/material';
 
 var cardStyle = {
     height: '10em',
-    display: 'flex'
+    display: 'flex',
+    backgroundColor: '#e6b175'
 }
 
 export default function SongList({ songs }) {
@@ -40,7 +41,7 @@ export default function SongList({ songs }) {
     return (
         <>
             <Grid container spacing={2} alignItems='center'>
-                {songs.slice(start, end).map(song => <Grid item xs={12} md={6} lg={4} xl={2}><SongCard song={song} /></Grid>)}
+                {songs.slice(start, end).map(song => <Grid item xs={12} sm={6} lg={4} xl={2}><SongCard song={song} /></Grid>)}
                 <Grid item xs={12}>
                     <IconButton aria-label="previous" color="primary" size="large" onClick={getPrev} disabled={start === 0 ? 'enabled' : ''}>
                         <ChevronLeft fontSize="inherit"/>

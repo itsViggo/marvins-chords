@@ -24,6 +24,7 @@ export default function ChordSelector() {
 
     function getSongs() {
         setLookingForSongs(true);
+        setSongs([]);
         fetch('data.json'
             , {
                 headers: {
@@ -34,6 +35,7 @@ export default function ChordSelector() {
         ).then(res => res.json()).then(json => {
             setSongs(json.filter(song => song.chords.every(val => selectedChords.includes(val))))
             setLookingForSongs(false);
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
         });
     }
 
