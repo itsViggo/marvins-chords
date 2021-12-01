@@ -13,8 +13,9 @@ var cardStyle = {
 
 export default function SongList({ songs }) {
     const [start, setStart] = React.useState(0)
-    const [end, setEnd] = React.useState(Math.min(5, songs.length))
     const resultsPerPage = 6;
+    const [end, setEnd] = React.useState(Math.min(resultsPerPage, songs.length))
+
 
     function getNext() {
         if (end + 5 > songs.length) {
