@@ -8,6 +8,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { Button } from '@mui/material';
 import { FormGroup } from '@mui/material';
+import SongList from './SongList';
 
 export default function ChordSelector() {
     const [note, setNote] = React.useState('C');
@@ -68,6 +69,6 @@ export default function ChordSelector() {
             <Button sx={{ margin: '30px' }} variant='contained' onClick={getSongs}>
                 Find songs
             </Button>
-            {songs.map(song => <div><a href={song.url} target='_blank'>{song.song} - {song.artist}</a></div>)}
+            {songs.length !== 0 && <SongList songs={songs}/>}
         </Box>)
 }
