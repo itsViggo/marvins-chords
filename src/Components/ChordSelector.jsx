@@ -14,6 +14,7 @@ export default function ChordSelector() {
     const [note, setNote] = React.useState('C');
     const [selectedChords, setSelectedChords] = React.useState([]);
     const [songs, setSongs] = React.useState([]);
+    const [lookingForSongs, setLookingForSongs] = React.useState(false);
 
     const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
     const chordTypes = ['', 'm', '7', '5', 'dim', 'dim7', 'aug', 'sus2', 'sus4', 'maj7', 'm7', '7sus4', 'maj9', 'maj11', 'maj13', 'maj9#11', 'maj13#11', 'add9', '6add9', 'maj7b5', 'maj7#5', 'm6', 'm9', 'm11', 'm13', 'madd9', 'm6add9', 'mmaj7', 'mmaj9', 'm7b5', 'm7#5', '6', '9', '11', '13', '7b5', '7#5', '7b9', '7#9', '7(b5,b9)', '7(b5,#9)', '7(#5,b9)', '7(#5,#9)', '9b5', '9#5', '13#11', '13b9', '11b9', 'sus2sus4', '-5']
@@ -22,6 +23,7 @@ export default function ChordSelector() {
     };
 
     function getSongs() {
+        setLookingForSongs(true);
         fetch('data.json'
             , {
                 headers: {
@@ -31,6 +33,7 @@ export default function ChordSelector() {
             }
         ).then(res => res.json()).then(json => {
             setSongs(json.filter(song => song.chords.every(val => selectedChords.includes(val))))
+            setLookingForSongs(false);
         });
     }
 
@@ -69,6 +72,7 @@ export default function ChordSelector() {
             <Button sx={{ margin: '30px' }} variant='contained' onClick={getSongs}>
                 Find songs
             </Button>
+            {lookingForSongs && <p>Marvin is looking for songs you can play...</p>}
             {songs.length !== 0 && <SongList songs={songs}/>}
         </Box>)
 }

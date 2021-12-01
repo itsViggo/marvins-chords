@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
+        <p style={{margin: '30px'}}>
           Marvin wants to know what chords you can play...
         </p>
         <ChordSelector/>

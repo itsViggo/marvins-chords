@@ -7,7 +7,7 @@ import Typography from '@mui/material/Typography';
 import { IconButton } from '@mui/material';
 
 var cardStyle = {
-    height: '15vh',
+    height: '10em',
     display: 'flex'
 }
 
