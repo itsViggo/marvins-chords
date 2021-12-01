@@ -12,7 +12,7 @@ var cardStyle = {
     backgroundColor: '#e6b175'
 }
 
-export default function SongList({ songs }) {
+export default function SongList({ songs, title }) {
     const [start, setStart] = React.useState(0)
     const resultsPerPage = 6;
     const [end, setEnd] = React.useState(Math.min(resultsPerPage, songs.length))
@@ -40,6 +40,7 @@ export default function SongList({ songs }) {
 
     return (
         <>
+            <p>{title}</p>
             <Grid container spacing={2} alignItems='center'>
                 {songs.slice(start, end).map(song => <Grid item xs={12} sm={6} lg={4} xl={2}><SongCard song={song} /></Grid>)}
                 <Grid item xs={12}>

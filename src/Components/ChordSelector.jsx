@@ -14,6 +14,7 @@ export default function ChordSelector() {
     const [note, setNote] = React.useState('C');
     const [selectedChords, setSelectedChords] = React.useState([]);
     const [songs, setSongs] = React.useState([]);
+    const [songsToLearn, setSongsToLearn] = React.useState([]);
     const [lookingForSongs, setLookingForSongs] = React.useState(false);
 
     const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -22,9 +23,20 @@ export default function ChordSelector() {
         setNote(event.target.value);
     };
 
+    function unknownChords(songChords, knownChords) {
+        let unknownChords = 0;
+        songChords.forEach(songChord => {
+            if (!knownChords.includes(songChord)) {
+                unknownChords ++;
+            }
+        });
+        return unknownChords;
+    };
+
     function getSongs() {
         setLookingForSongs(true);
         setSongs([]);
+        setSongsToLearn([]);
         fetch('data.json'
             , {
                 headers: {
@@ -33,7 +45,8 @@ export default function ChordSelector() {
                 }
             }
         ).then(res => res.json()).then(json => {
-            setSongs(json.filter(song => song.chords.every(val => selectedChords.includes(val))))
+            setSongs(json.filter(song => unknownChords(song.chords, selectedChords) === 0))
+            setSongsToLearn(json.filter(song => unknownChords(song.chords, selectedChords) === 1))
             setLookingForSongs(false);
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
         });
@@ -75,6 +88,7 @@ export default function ChordSelector() {
                 Find songs
             </Button>
             {lookingForSongs && <p>Marvin is looking for songs you can play...</p>}
-            {songs.length !== 0 && <SongList songs={songs}/>}
+            {songs.length !== 0 && <SongList songs={songs} title='Marvin found these songs which only contain chords that you already know...'/>}
+            {songsToLearn.length !== 0 && <SongList songs={songsToLearn} title="Marvin found these songs which only contain one chord that you don't know yet..."/>}
         </Box>)
 }
