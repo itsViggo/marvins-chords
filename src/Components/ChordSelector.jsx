@@ -54,7 +54,7 @@ export default function ChordSelector () {
   return (
     <Box sx={{ minWidth: 120, margin: '30px' }}>
       <img src={'/marvin.svg'} className="App-logo" alt="logo" />
-      <Typography variant='h3'>
+      <Typography variant='h4'>
         Marvin wants to know what chords you can play...
       </Typography>
       <FormControl component="fieldset">
@@ -74,7 +74,7 @@ export default function ChordSelector () {
         </FormGroup>
         <FormGroup row>
           {[...chordTypes, ...notes.filter(n => n !== note).map(note => `/${note}`)].map((chordType) => (
-            <FormControlLabel key={note}
+            <FormControlLabel key={chordType}
               control={
                 <Checkbox
                   id={chordType}
@@ -91,7 +91,7 @@ export default function ChordSelector () {
       <Button sx={{ margin: '30px' }} variant='contained' onClick={getSongs}>
         Find songs
       </Button>
-      {lookingForSongs && <p>Marvin is looking for songs you can play...</p>}
+      {lookingForSongs && <Typography variant='h4'>Marvin is looking for songs you can play...</Typography>}
       {songs.length !== 0 && <SongList songs={songs} title='Marvin found these songs which only contain chords that you already know...' />}
       {songsToLearn.length !== 0 && <SongList songs={songsToLearn} title="Marvin found these songs which only contain one chord that you don't know yet..." />}
     </Box>)

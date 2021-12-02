@@ -4,6 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import ChevronLeft from '@mui/icons-material/ChevronLeft';
 import ChevronRight from '@mui/icons-material/ChevronRight';
 import SongCard from './SongCard';
+import { Typography } from '@mui/material';
 
 export default function SongList ({ songs, title }) {
   const [start, setStart] = React.useState(0)
@@ -32,7 +33,7 @@ export default function SongList ({ songs, title }) {
 
   return (
     <>
-      <p>{title}</p>
+      <Typography variant='h4'>{title}</Typography>
       <Grid container spacing={2} alignItems='center'>
         {songs.slice(start, end).map(song => <Grid item xs={12} sm={6} lg={4} xl={2} key={song}><SongCard song={song} /></Grid>)}
         <Grid item xs={12}>

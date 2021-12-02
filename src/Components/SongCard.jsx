@@ -7,6 +7,7 @@ import CardActionArea from '@mui/material/CardActionArea';
 const cardStyle = {
   height: '10em',
   display: 'flex',
+  marginTop: '30px',
   backgroundColor: '#e6b175'
 }
 
