@@ -1,5 +1,5 @@
 # Marvin's Chords
-Currently deployed at https://marvins-chords.herokuapp.com/, this is a webapp where you can tell Marvin what chords you know and he'll tell you what songs you can play and some songs you can learn that have an extra chord that you don't know yet.
+Currently deployed at https://marvins-chords.netlify.app/, this is a webapp where you can tell Marvin what chords you know and he'll tell you what songs you can play and some songs you can learn that have an extra chord that you don't know yet.
 
 # How it works
 Python scraper gets the top 5000 most popular songs and their corresponding chords from ultimate-guitar.com and stores it in data.json. The webapp itself is built from React and finds songs from data.json with chords that are a subset of (or nearly a subset of) those selected by the user.
